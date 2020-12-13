@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const mongoUrl = "mongodb://localhost:27017/";
+const mongoUrl = "mongodb://localhost:27017/hw";
 
 mongoose.connect(mongoUrl, {
     useCreateIndex: true,

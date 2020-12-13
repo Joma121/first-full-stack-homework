@@ -4,8 +4,15 @@ const db = require("../models");
 
 /* Index */
 router.get("/", (req, res) => {
-    const context = { furnitures: db.Furniture };
-    res.render("furnitures/index", context);
+    db.Furniture.find({}, (err, allFurniture) => {
+        if (err) {
+            console.log(err);
+            return res.send("Internal Server Error")
+        } else {
+            const context = {furnitures: allFurniture}
+            return res.render("furnitures/index", context);
+        }
+    })
 });
 
 

@@ -9,8 +9,8 @@
     <nav><h3><a href="/">Home</a> - <a href="/furnitures/new">Add Furniture</a></h3></nav>
     <h2>Furniture Catalog</h2>
     <ul>
-        <% furnitures.forEach((furniture, index) => { %>
-            <li><a href="/furnitures/<%= index %> "><%= furniture.name %></a></li>
+        <% furnitures.forEach(furniture => { %>
+            <li><a href="/furnitures/<%= furniture._id %> "><%= furniture.name %></a></li>
         <% }) %>
     </ul>
 </body>
