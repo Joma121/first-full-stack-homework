@@ -35,15 +35,21 @@ router.post("/", (req, res) => {
 })
 
 /* Show */
-router.get("/:index", (req, res) => {
-    const index = req.params.index;
-    const furniture = db.Furniture[index];
-    const context = {furniture: furniture, index: index};
-    res.render("furnitures/show", context)
+router.get("/:id", (req, res) => {
+    const id = req.params.id;
+    db.Furniture.findById(id, (err, foundFurniture) => {
+        if (err) {
+            console.log(err);
+            return res.send("Internal Server Error");            
+        } else {
+            const context = {furniture: foundFurniture};
+            return res.render("furnitures/show", context)            
+        }
+    })
 })
 
 /* Delete */
-router.delete("/:index", (req, res) =>{
+router.delete("/:id", (req, res) =>{
     const index = req.params.index;
     console.log("=== Deleted ===\n", db.Furniture[index]);
     db.Furniture.splice(index, 1);
@@ -52,14 +58,14 @@ router.delete("/:index", (req, res) =>{
 
 
 /* Edit */
-router.get("/:index/edit", (req, res) => {
+router.get("/:id/edit", (req, res) => {
     const index =req.params.index;
     const furniture = db.Furniture[index];
     const context = {furniture: furniture, index: index};
     res.render("furnitures/edit", context);
 })
 
-router.put("/:index", (req, res) => {
+router.put("/:id", (req, res) => {
     const newData = req.body;
     const index = req.params.index;
     db.Furniture[index] = { ...db.Furniture[index], ...newData};
