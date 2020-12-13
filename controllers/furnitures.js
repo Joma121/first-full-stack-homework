@@ -25,8 +25,26 @@ router.post("/", (req, res) => {
 router.get("/:index", (req, res) => {
     const index = req.params.index;
     const furniture = db.Furniture[index];
-    const context = {furniture: furniture};
+    const context = {furniture: furniture, index: index};
     res.render("furnitures/show", context)
 })
+
+/* Edit */
+router.get("/:index/edit", (req, res) => {
+    const index =req.params.index;
+    const furniture = db.Furniture[index];
+    const context = {furniture: furniture, index: index};
+    res.render("furnitures/edit", context);
+})
+
+router.put("/:index", (req, res) => {
+    const newData = req.body;
+    const index = req.params.index;
+    db.Furniture[index] = { ...db.Furniture[index], ...newData};
+    console.log("=== Updated ===\n", db.Furniture[index]);
+    res.redirect("/furnitures");
+});
+
+
 
 module.exports = router;

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Furniture</title>
+</head>
+<body>
+    <nav><h3><a href="/">Home</a> - <a href="/furnitures">Furniture Catalog</a></h3></nav>
+    <h1>Edit <%= furniture.name %></h1>
+    <form action="/furnitures/<%= index %>?_method=PUT" method="POST">
+        Name: <input type="text" name="name" value="<%= furniture.name %> "> <br>
+        Finish: <input type="text" name="finish" value="<%= furniture.finish %> "><br>
+        Quantity: <input type="number" name="quantity" value="<%= furniture.quantity %>" style="width: 3em"><br>
+
+        <input type="submit" value="Update <%= furniture.name %>">
+    </form>
+</body>
+</html>
