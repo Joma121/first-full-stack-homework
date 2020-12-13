@@ -1,0 +1,20 @@
+{
+  "name": "first-full-stack-homework",
+  "version": "1.0.0",
+  "description": "![GA Logo](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png)",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.generalassemb.ly:turen121/first-full-stack-homework.git"
+  },
+  "author": "Josh Martins",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "method-override": "^3.0.0"
+  }
+}
