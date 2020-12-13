@@ -26,6 +26,9 @@ app.get('/', (request, response) => {
     response.render("home");
 })
 
+/* Bind Controller */
+app.use("/furnitures", controllers.furnitures);
+
 /* Server Bind */
 app.listen(PORT, function () {
 	console.log(`Server is live at http://localhost:${PORT}/`);
