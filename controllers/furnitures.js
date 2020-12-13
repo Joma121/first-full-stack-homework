@@ -23,9 +23,15 @@ router.get("/new", (req, res) => {
 
 /* Create */
 router.post("/", (req, res) => {
-    console.log("=== Created ===\n", req.body);
-    db.Furniture.push(req.body);
-    res.redirect("/furnitures")
+    db.Furniture.create(req.body, (err, createdFurniture) => {
+        if (err) {
+            console.log(err);
+            return res.send("Internal Server Error");
+        } else {
+            console.log("=== Created ===\n", createdFurniture);
+            return res.redirect("/furnitures")
+        }
+    })
 })
 
 /* Show */
