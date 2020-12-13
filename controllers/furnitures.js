@@ -59,18 +59,37 @@ router.delete("/:id", (req, res) =>{
 
 /* Edit */
 router.get("/:id/edit", (req, res) => {
-    const index =req.params.index;
-    const furniture = db.Furniture[index];
-    const context = {furniture: furniture, index: index};
-    res.render("furnitures/edit", context);
+    const id = req.params.id;
+    db.Furniture.findById(id, (err, foundFurniture) =>{
+        if (err) {
+            console.log(err);
+            return res.send("Internal Server Error");                
+        } else {
+            const context = {furniture: foundFurniture};
+            return res.render("furnitures/edit", context);           
+        }
+    })
 })
 
 router.put("/:id", (req, res) => {
-    const newData = req.body;
-    const index = req.params.index;
-    db.Furniture[index] = { ...db.Furniture[index], ...newData};
-    console.log("=== Updated ===\n", db.Furniture[index]);
-    res.redirect("/furnitures");
+    const id = req.params.id;
+
+    db.Furniture.findByIdAndUpdate(
+        id, 
+        {
+            $set: {
+                ...req.body
+            }
+        },
+        (err, updatedFurniture) => {
+        if (err) {
+            console.log(err);
+            return res.send("Internal Server Error");                  
+        } else {
+            console.log("=== Updated ===\n", updatedFurniture);
+            return res.redirect(`/furnitures/${updatedFurniture._id}`);
+        }
+    })
 });
 
 
