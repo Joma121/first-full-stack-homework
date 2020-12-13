@@ -11,6 +11,9 @@
     <h3><%= furniture.name %> </h3>
     <h4>Finish:<%= furniture.finish %> <br>
         Stock: <%= furniture.quantity %>  </h4>
-    <a href="/furnitures/<%= index %>/edit">EDITS</a>
+        <form action="/furnitures/<%= index %>?_method=DELETE" method="POST">
+            <input type="submit" value="Delete">
+        </form>
+    <a href="/furnitures/<%= index %>/edit">EDIT</a>
 </body>
 </html>

@@ -29,6 +29,15 @@ router.get("/:index", (req, res) => {
     res.render("furnitures/show", context)
 })
 
+/* Delete */
+router.delete("/:index", (req, res) =>{
+    const index = req.params.index;
+    console.log("=== Deleted ===\n", db.Furniture[index]);
+    db.Furniture.splice(index, 1);
+    res.redirect("/furnitures");
+})
+
+
 /* Edit */
 router.get("/:index/edit", (req, res) => {
     const index =req.params.index;
