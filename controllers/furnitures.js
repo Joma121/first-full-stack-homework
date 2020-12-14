@@ -50,10 +50,16 @@ router.get("/:id", (req, res) => {
 
 /* Delete */
 router.delete("/:id", (req, res) =>{
-    const index = req.params.index;
-    console.log("=== Deleted ===\n", db.Furniture[index]);
-    db.Furniture.splice(index, 1);
-    res.redirect("/furnitures");
+    const id = req.params.id;
+    db.Furniture.findByIdAndDelete(id, (err, deletedFurniture) => {
+        if (err) {
+            console.log(err);
+            return res.send("Internal Server Error");        
+        } else {
+            console.log("=== Deleted ===\n", deletedFurniture);
+            return res.redirect("/furnitures");
+        }
+    })
 })
 
 
